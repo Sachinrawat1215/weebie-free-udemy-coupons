@@ -1,0 +1,149 @@
+@media (max-width: 1300px) {
+    html{
+        font-size: 6%;
+    }
+    h1{
+        font-size: 40rem;
+    }
+
+    h2{
+        font-size: 16rem;
+    }
+
+    .container{
+        .notice-container {
+            width: 900px;
+        }
+
+        .course-outer{
+            width: 900px;
+        }
+    }
+}
+
+@media (max-width: 970px) {
+    html{
+        font-size: 5.8%;
+    }
+    h1{
+        font-size: 40rem;
+        padding-top: 90px;
+    }
+
+    h2{
+        font-size: 17rem;
+    }
+
+    .container{
+        .notice-container {
+            width: 700px;
+        }
+
+        .course-outer{
+            width: 700px;
+            padding: 7rem;
+
+            .animation{
+                width: 40%;
+            }
+
+            .single-course{
+                flex-direction: column;
+
+                p{
+                    width: 100%;
+                    text-align: center;
+                }
+
+                button{
+                    margin-top: 5rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 780px) {
+    h1{
+        font-size: 35rem;
+    }
+
+    #small-title-meta{
+        display: block;
+    }
+
+    #big-title-meta{
+        display: none;
+    }
+
+    .container{
+        .notice-container {
+            width: 450px;
+
+            .note-header{
+                flex-direction: column;
+
+                p{
+                    margin-left: 0;
+                    margin-top: 15rem;
+                }
+
+                img{
+                    width: 105rem;
+                }
+            }
+
+            .main-note{
+                margin-left: 30rem;
+            }
+        }
+
+        .course-outer{
+            width: 450px;
+
+            .animation{
+                width: 70%;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .container{
+        header{
+            .header-container{
+                width: 95%;
+            }
+        }
+        .notice-container {
+            width: 98%;
+        }
+
+        .course-outer{
+            width: 98%;
+
+            .single-course{
+                padding: 20rem 5rem;
+            }
+        }
+
+        footer{
+            padding: 8px;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .container{
+        .notice-container{
+            padding: 35rem 20rem;
+        }
+
+        .course-outer{
+            padding: 8px 3px;
+            .single-course{
+                margin: 10rem 5rem;
+            }
+        }
+    }
+}
