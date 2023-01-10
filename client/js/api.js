@@ -1,6 +1,7 @@
-fetch("https://udemy-backend-api.herokuapp.com/").then(response => response.json()).then((res) => {
+// fetch("https://udemy-backend-api.herokuapp.com/").then(response => response.json()).then((res) => {
+fetch("http://localhost:8000/").then(response => response.json()).then((res) => {
     let data = res;
-    // console.log(res);
+    console.log(res);
     let title = data[0];
     let courseArray = data[1];
     let newArray = [];
@@ -8,7 +9,7 @@ fetch("https://udemy-backend-api.herokuapp.com/").then(response => response.json
     for (let i in title) {
         let stringArray = title[i];
         let stringLength = stringArray.text.length;
-        let finalString = stringArray.text.slice(0, stringLength - 15);
+        let finalString = stringArray.text.slice(0, stringLength - 0);
         let courseLink = courseArray[i];
         newArray.push([finalString, courseLink]);
     }

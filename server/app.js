@@ -5,42 +5,26 @@ const port = process.env.PORT || 8000;
 const cors = require("cors");
 
 app.use(cors({
-    origin: "*"
+    origin: "https://weebie.netlify.app/"
 }));
-
 app.get("/", (req, res) => {
     const run = async () => {
         return new Promise(async (resolve, reject) => {
             try {
                 const browser = await puppeteer.launch(
                     {
-                    headless: true,
-                    args: ["--no-sandbox"]
-                }
+                        headless: true,
+                        args: ["--no-sandbox"]
+                    }
                 );
                 const page = await browser.newPage();
-                await page.goto('https://e-next.in/e/udemycoupons.php');
+                await page.goto('https://jobs.e-next.in/course/udemy');
                 let urls = await page.evaluate(() => {
                     let results = [];
 
-                    // // Wrong Code
-
-                    // let items = document.querySelectorAll('.p2');
-                    // // let items = document.getElementsByClassName("col-8");
-                    // items.forEach((item) => {
-                    //     results.push({
-                    //         text: item.innerText
-                    //     })
-                    // });
-                    // console.log(results);
-
-
-                    // Correct Code
-
-                    let items = document.getElementsByClassName("col-8");
+                    let items = document.getElementsByClassName("h6");
                     let resultArray = [...items];
 
-                    // let items = document.getElementsByClassName("col-8");
                     resultArray.forEach((item) => {
                         results.push({
                             text: item.innerText
@@ -49,13 +33,12 @@ app.get("/", (req, res) => {
 
 
                     let lresults = [];
-                    let litems = document.querySelectorAll('.btn-primary');
+                    let litems = document.querySelectorAll('.btn-secondary');
                     litems.forEach((item) => {
                         lresults.push({
                             url: item.getAttribute("href")
-                        })    
+                        })
                     });
-                    console.log(lresults.length)
                     return [results, lresults];
                 })
                 browser.close();
