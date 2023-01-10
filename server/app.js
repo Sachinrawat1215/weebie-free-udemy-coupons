@@ -5,7 +5,7 @@ const port = process.env.PORT || 8000;
 const cors = require("cors");
 
 app.use(cors({
-    origin: "https://weebie.netlify.app/"
+    origin: "*"
 }));
 app.get("/", (req, res) => {
     const run = async () => {
