@@ -7,22 +7,26 @@ const cron = require('node-cron');
 const fs = require('fs');
 const filePath = 'output.json';
 
-const istDateTime = new Intl.DateTimeFormat('en-US', {
-  timeZone: 'Asia/Kolkata',
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-  hour: '2-digit',
-  minute: '2-digit',
-  second: '2-digit',
-  hour12: true,
-}).format(new Date());
-
 app.use(
   cors({
     origin: '*',
   })
 );
+
+const getCurrentTime = (time) => {
+  const istDateTime = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Kolkata',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+  }).format(time);
+
+  return istDateTime;
+};
 
 cron.schedule('*/10 * * * *', () => {
   const run = async () => {
@@ -69,31 +73,34 @@ cron.schedule('*/10 * * * *', () => {
 
       fs.unlink(filePath, (err) => {
         if (err) {
-          console.log(`Time: ${istDateTime} - Failed to delete file: `, err);
+          console.log(`Time: ${getCurrentTime(new Date())} - Failed to delete file: `, err);
         } else {
-          console.log(`Time: ${istDateTime} - File deleted successfully!`);
+          console.log(`Time: ${getCurrentTime(new Date())} - File deleted successfully!`);
         }
       });
 
       fs.writeFile(filePath, convertDataToString, 'utf-8', (err) => {
         if (err) {
-          console.log(`Time: ${istDateTime} - Failed to write data in file`);
+          console.log(`Time: ${getCurrentTime(new Date())} - Failed to write data in file`);
         } else {
-          console.log(`Time: ${istDateTime} - File create and data added`);
+          console.log(`Time: ${getCurrentTime(new Date())} - File create and data added`);
         }
       });
     })
     .catch((error) => {
-      console.log(`Time: ${istDateTime} - Failed to get data through chromium browser`, error);
+      console.log(
+        `Time: ${getCurrentTime(new Date())} - Failed to get data through chromium browser`,
+        error
+      );
     });
 });
 
 app.get('/', (req, res) => {
   fs.readFile(filePath, 'utf-8', (err, data) => {
     if (err) {
-      console.log(`Time: ${istDateTime} - `, err);
+      console.log(`Time: ${getCurrentTime(new Date())} - `, err);
     } else {
-        console.log(`Time: ${istDateTime} - Received a get API call`)
+      console.log(`Time: ${getCurrentTime(new Date())} - Received a get API call`);
       res.send(JSON.parse(data));
     }
   });
