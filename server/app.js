@@ -24,7 +24,7 @@ app.use(
   })
 );
 
-cron.schedule('*/15 * * * *', () => {
+cron.schedule('*/10 * * * *', () => {
   const run = async () => {
     return new Promise(async (resolve, reject) => {
       try {
